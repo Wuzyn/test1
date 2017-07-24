@@ -1,3 +1,5 @@
+import psycopg2
+
 class Usluga:
     def __init__(self, id, nazwa, opis, cena_netto, termin_waznosci, klient_id):
         self.id = id
@@ -6,6 +8,9 @@ class Usluga:
         self.cena_netto = cena_netto
         self.termin_waznosci = termin_waznosci
         self.klient_id = klient_id
+
+def get_connection():
+    return psycopg2.connect(database="test", user="postgres", password="password", host="127.0.0.1", port="5432")
 
 def wczytaj_uslugi(id_klienta):
     conn = get_connection()
